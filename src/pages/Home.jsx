@@ -8,15 +8,20 @@ export default function Home() {
   return (
     <>
       <Seo
-        title="Home | GeoSpatial Systems Engineer"
-        description="GeoSpatial Systems Engineer portfolio: Web GIS, spatial data engineering, GeoAI, and real-time geospatial systems."
+        title="GeoSpatial Systems Engineer | Portfolio"
+        description="Enterprise Web GIS, GeoAI, and real-time spatial intelligence systems engineering portfolio."
         canonicalPath="/"
       />
-      <div className="bg-grid-radial">
-        <Hero />
-      </div>
+
+      <Hero />
+
       <FocusAreas />
-      <FeaturedProjects />
+
+      {/* add id for scroll targeting */}
+      <div id="projects">
+        <FeaturedProjects />
+      </div>
+
       <TechStack />
     </>
   );
