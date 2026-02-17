@@ -7,34 +7,42 @@ import { useMemo, useState } from "react";
 import { projects } from "../data/projects";
 
 export default function Projects() {
+
   const [filter, setFilter] = useState("All");
 
-  const tags = useMemo(() => {
-    const all = new Set();
-    projects.forEach((p) => p.tags.forEach((t) => all.add(t)));
-    return ["All", ...Array.from(all)];
+  // Build unique category list
+  const categories = useMemo(() => {
+    const set = new Set();
+    projects.forEach((p) => set.add(p.category));
+    return ["All", ...Array.from(set)];
   }, []);
 
+  // Filter by category
   const filtered = useMemo(() => {
     if (filter === "All") return projects;
-    return projects.filter((p) => p.tags.includes(filter));
+    return projects.filter((p) => p.category === filter);
   }, [filter]);
 
   return (
     <>
       <Seo
         title="Projects | GeoSpatial Systems Engineer"
-        description="Projects showcasing Web GIS architecture, spatial data governance, GeoAI integration, and performance-minded geospatial systems."
+        description="Engineering case studies showcasing enterprise Web GIS, GeoAI systems, and real-time spatial intelligence platforms."
         canonicalPath="/projects"
       />
+
       <section className="border-b border-line bg-grid-radial">
         <Container className="py-14 sm:py-16">
           <SectionHeader
-            eyebrow="Projects"
-            title="Systems, not demos"
-            subtitle="A focused set of work highlighting scalable geospatial interfaces, robust data workflows, and decision-support patterns."
+            eyebrow="Engineering Portfolio"
+            title="Systems, Not Demos"
+            subtitle="A curated set of production-grade geospatial platforms engineered for scalability, intelligence, and operational impact."
           />
-          <ProjectFilters tags={tags} active={filter} onChange={setFilter} />
+          <ProjectFilters
+            tags={categories}
+            active={filter}
+            onChange={setFilter}
+          />
         </Container>
       </section>
 

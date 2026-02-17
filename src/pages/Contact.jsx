@@ -5,8 +5,8 @@ export default function Contact() {
   return (
     <>
       <Seo
-        title="Contact | GeoSpatial Systems Engineer"
-        description="Contact for collaboration on Web GIS, spatial data engineering, GeoAI systems, and geospatial decision-support platforms."
+        title="Contact | Collaboration • Web GIS • GeoAI • Real-Time Tracking"
+        description="Let’s collaborate on enterprise Web GIS, GeoAI consulting, real-time tracking systems, spatial data engineering, or research partnerships."
         canonicalPath="/contact"
       />
       <ContactPanel />

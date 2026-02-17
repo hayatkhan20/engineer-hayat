@@ -4,19 +4,21 @@ export default function Seo({ title, description, canonicalPath = "/" }) {
   useEffect(() => {
     if (title) document.title = title;
 
-    const setMeta = (name, content) => {
-      let tag = document.querySelector(`meta[name="${name}"]`);
+    const setMeta = (attr, key, content) => {
+      if (!content) return;
+      let tag = document.querySelector(`meta[${attr}="${key}"]`);
       if (!tag) {
         tag = document.createElement("meta");
-        tag.setAttribute("name", name);
+        tag.setAttribute(attr, key);
         document.head.appendChild(tag);
       }
       tag.setAttribute("content", content);
     };
 
-    if (description) setMeta("description", description);
+    // Standard
+    if (description) setMeta("name", "description", description);
 
-    // canonical
+    // Canonical
     const href = `${window.location.origin}${canonicalPath}`;
     let link = document.querySelector('link[rel="canonical"]');
     if (!link) {
@@ -25,6 +27,17 @@ export default function Seo({ title, description, canonicalPath = "/" }) {
       document.head.appendChild(link);
     }
     link.setAttribute("href", href);
+
+    // Open Graph
+    setMeta("property", "og:title", title);
+    setMeta("property", "og:description", description);
+    setMeta("property", "og:type", "website");
+    setMeta("property", "og:url", href);
+
+    // Twitter
+    setMeta("name", "twitter:card", "summary");
+    setMeta("name", "twitter:title", title);
+    setMeta("name", "twitter:description", description);
   }, [title, description, canonicalPath]);
 
   return null;
