@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #050814;
+}
+
+/* Subtle selection and focus styling */
+::selection {
+  background: rgba(14, 165, 233, 0.35);
+}
+
+a, button {
+  -webkit-tap-highlight-color: transparent;
+}
